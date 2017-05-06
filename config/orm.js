@@ -1,6 +1,5 @@
-// Import Node Dependencies
 var connection = require('./connection.js');
-// Connect to MySQL database
+// mysql connection
 connection.connect(function(err) {
   if (err) {
     console.error('error: ' + err.stack);
@@ -8,8 +7,7 @@ connection.connect(function(err) {
   };
   console.log('connected as: ' + connection.threadId);
 });
-
-// Methods for MySQL commands
+// build ORM methods to query and update the db
 var orm = {
   // selectAll()
   selectAll: function(callback) {
@@ -21,42 +19,6 @@ var orm = {
   },
   // insertOne()
   insertOne: function(burger_name, callback){
-    // // Create a new timestamp
-    // // ----------------------------------------------------------
-    // var d = new Date();
-    // var timestamp = ''+ d.getFullYear() + '-'; // must be string
-    // var month = '' + (d.getMonth() + 1); // must be string
-    //   // handle 1 digit months
-    //   if(month.length == 1){
-    //     month = '0' + month;
-    //   }
-    // timestamp += month + '-';
-    // var day = '' + d.getDate(); // must be string
-    //   // handle 1 digit day of month
-    //   if(day.length == 1){
-    //     day = '0' + day;
-    //   }
-    // timestamp += day + ' ';
-    // var hour = '' + d.getHours(); // must be string
-    //   // handle 1 digit hour
-    //   if(hour.length == 1){
-    //     hour = '0' + hour;
-    //   }
-    // timestamp += hour + ':';
-    // var minute = '' + d.getMinutes(); // must be string
-    //   // handle 1 digit minute
-    //   if(minute.length == 1){
-    //     minute = '0' + minute;
-    //   }
-    // timestamp += minute + ':';
-    // var second = '' + d.getSeconds(); // must be string
-    //   // handle 1 digit second
-    //   if(second.length == 1){
-    //     second = '0' + second;
-    //   }
-    // timestamp += second;
-    // // ----------------------------------------------------------
-
     // Run MySQL Query
     connection.query('INSERT INTO burgers SET ?', {
       burger_name: burger_name,
@@ -66,7 +28,6 @@ var orm = {
       if (err) throw err;
       callback(result);
     });
-
   },
   // devour a burger, update the database
   updateOne: function(burgerID, callback){

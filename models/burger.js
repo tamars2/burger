@@ -1,5 +1,6 @@
 var orm = require('../config/orm.js');
 
+//build the burger methods
 var burger = {
   selectAll: function(callback){
     orm.selectAll(function(res){

@@ -1,12 +1,14 @@
+//dependencies
 var express = require('express');
 var router = express.Router();
 var burger = require('../models/burger.js');
 
+//route to the index
 router.get('/', function (req, res) {
   res.redirect('/index');
 });
 
-// Index Page
+// index page
 router.get('/index', function (req, res) {
   burger.selectAll(function(data) {
     var hbsObject = { burgers: data };
@@ -15,14 +17,14 @@ router.get('/index', function (req, res) {
   });
 });
 
-// Create a New Burger
+// create a new burger
 router.post('/burger/create', function (req, res) {
   burger.insertOne(req.body.burger_name, function() {
     res.redirect('/index');
   });
 });
 
-// Devour a Burger
+// devour a burger
 router.post('/burger/eat/:id', function (req, res) {
   burger.updateOne(req.params.id, function() {
     res.redirect('/index');

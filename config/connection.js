@@ -13,6 +13,5 @@ else{
     database : 'burgers_db' // Add your database
   });
 }
-
 // Export the Connection
 module.exports = connection;
