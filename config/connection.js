@@ -9,8 +9,8 @@ else{
   connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'basketball', // Add your password
-    database : 'burgers_db' // Add your database
+    password : 'basketball',
+    database : 'burgers_db'
   });
 }
 // Export the Connection
